@@ -6,6 +6,7 @@
   justify-content: center;
   padding: 20px 40px;
   align-items: center;
+  cursor: pointer;
 }
 
 .title {
