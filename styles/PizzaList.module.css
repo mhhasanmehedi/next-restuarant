@@ -19,3 +19,13 @@
   width: 100%;
   flex-wrap: wrap;
 }
+
+@media (max-width: 480px) {
+  .title {
+    align-items: center;
+  }
+  .desc {
+    width: 90%;
+    text-align: center;
+  }
+}
