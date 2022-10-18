@@ -11,7 +11,7 @@
 }
 
 .table {
-  height: 100%;
+  width: 100%;
   text-align: left;
   margin-bottom: 50px;
 }
@@ -78,4 +78,58 @@
   font-weight: bold;
   margin-top: 20px;
   cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .trTitle {
+    display: none;
+  }
+
+  .tr {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+  }
+
+  .id::before {
+    content: "Order ID: ";
+    font-weight: 500;
+  }
+
+  .name::before {
+    content: "Customer: ";
+    font-weight: 500;
+  }
+
+  .address::before {
+    content: "Address: ";
+    font-weight: 500;
+  }
+
+  .total::before {
+    content: "Total Price: ";
+    font-weight: 500;
+  }
+
+  .row:nth-of-type(2) {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .done,
+  .undone,
+  .inProgress {
+    margin-bottom: 20px;
+  }
 }
