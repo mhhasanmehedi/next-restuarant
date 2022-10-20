@@ -1,13 +1,16 @@
 import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartSlice";
 import styles from "../../styles/Product.module.css";
 
 const Product = ({ pizza }) => {
+  const dispatch = useDispatch();
   const { title, desc, img, prices, extraOptions } = pizza;
 
   const [size, setSize] = useState(0);
-  const [price, setPrice] = useState(pizza.prices[0]);
+  const [price, setPrice] = useState(prices[0]);
   const [extras, setExtras] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
@@ -16,7 +19,7 @@ const Product = ({ pizza }) => {
   };
 
   const handleSize = (sizeIndex) => {
-    const difference = pizza.prices[sizeIndex] - pizza.prices[size];
+    const difference = prices[sizeIndex] - prices[size];
     setSize(sizeIndex);
     changePrice(difference);
   };
@@ -33,7 +36,10 @@ const Product = ({ pizza }) => {
     }
   };
 
-  console.log(quantity);
+  const handleClick = () => {
+    dispatch(addProduct({ ...pizza, extras, price, quantity }));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -62,7 +68,7 @@ const Product = ({ pizza }) => {
         </div>
         <h3 className={styles.choose}>Choose additional ingredients</h3>
         <div className={styles.ingredients}>
-          {pizza.extraOptions.map((option, index) => (
+          {extraOptions.map((option, index) => (
             <div className={styles.option} key={index}>
               <input
                 type="checkbox"
@@ -83,7 +89,9 @@ const Product = ({ pizza }) => {
             className={styles.quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
-          <button className={styles.button}>Add to cart</button>
+          <button className={styles.button} onClick={handleClick}>
+            Add to cart
+          </button>
         </div>
       </div>
     </div>
